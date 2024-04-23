@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int @id @default(autoincrement())
+  number   String @unique
+  name     String
+  password String
+  role     Role @default(USER)
+
+  cars Car[]
+
+  @@map("user")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Car {
+  id                Int @id @default(autoincrement())
+  model             String
+  city              Int
+  track             Int
+  otherCity         Int    @map("other_city")
+  cityDistance      Int[]  @map("city_distance")
+  trackDistance     Int[]  @map("track_distance")
+  otherCityDistance Int[]  @map("other_city_distance")
+  userId            Int @map("user_id")
+
+  user User @relation(fields: [userId], references: [id])
+
+
+  @@map("car")
+}
