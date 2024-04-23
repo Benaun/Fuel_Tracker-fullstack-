@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+
+body {
+  @apply flex flex-col h-screen justify-between max-w-[430px] mx-auto;
+  font-family: var(--font-main), sans-serif;
+}
