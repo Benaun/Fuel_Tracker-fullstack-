@@ -58,7 +58,7 @@ export class AuthService {
     };
   }
 
-  private issueTokens(userId: number) {
+  private issueTokens(userId: string) {
     const data = { id: userId };
 
     const accessToken = this.jwt.sign(data, {
@@ -74,10 +74,10 @@ export class AuthService {
 
   private async validateUser(dto: AuthDto) {
     const user = await this.userService.getByNumber(dto.number);
-    if (!user) throw new NotFoundException('Неверный логин или пароль');
+    if (!user) throw new NotFoundException('Неверный номер или пароль');
 
     const isValid = await verify(user.password, dto.password);
-    if (!isValid) throw new NotFoundException('Неверный логин или пароль');
+    if (!isValid) throw new NotFoundException('Неверный номер или пароль');
 
     return user;
   }

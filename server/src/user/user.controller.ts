@@ -18,7 +18,7 @@ export class UserController {
 
   @Get()
   @Auth()
-  async profile(@CurrentUser('id') id: number) {
+  async profile(@CurrentUser('id') id: string) {
     return this.userService.getProfile(id);
   }
 
@@ -26,7 +26,7 @@ export class UserController {
   @HttpCode(200)
   @Put()
   @Auth()
-  async updateProfile(@CurrentUser('id') id: number, @Body() dto: UserDto) {
+  async updateProfile(@CurrentUser('id') id: string, @Body() dto: UserDto) {
     return this.userService.update(id, dto);
   }
 }

@@ -3,17 +3,17 @@ import { IsInt, IsString, IsOptional } from 'class-validator';
 export class CarDto {
   @IsString()
   @IsOptional()
-  model?: string;
+  model: string;
 
   @IsInt()
   @IsOptional()
-  city?: number;
+  city: number;
 
   @IsInt()
   @IsOptional()
-  track?: number;
+  track: number;
 
   @IsInt()
   @IsOptional()
-  otherCity?: number;
+  otherCity: number;
 }

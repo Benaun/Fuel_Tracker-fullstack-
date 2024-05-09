@@ -21,15 +21,15 @@ export class CarController {
 
   @Get()
   @Auth()
-  async getCars() {
-    return this.carService.getCars();
+  async getAll(@CurrentUser('id') userId: string) {
+    return this.carService.getAll(userId);
   }
 
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
   @Post()
   @Auth()
-  async create(@Body() dto: CarDto, @CurrentUser('id') userId: number) {
+  async create(@Body() dto: CarDto, @CurrentUser('id') userId: string) {
     return this.carService.create(dto, userId);
   }
 
@@ -39,8 +39,8 @@ export class CarController {
   @Auth()
   async update(
     @Body() dto: CarDto,
-    @CurrentUser('id') userId: number,
-    @Param('id') id: number,
+    @CurrentUser('id') userId: string,
+    @Param('id') id: string,
   ) {
     return this.carService.update(dto, id, userId);
   }
@@ -48,7 +48,7 @@ export class CarController {
   @HttpCode(200)
   @Delete(':id')
   @Auth()
-  async delete(@Param('id') id: number) {
+  async delete(@Param('id') id: string) {
     return this.carService.delete(id);
   }
 }

@@ -8,25 +8,13 @@ import { UserDto } from './user.dto';
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
-  async getById(id: number) {
+  async getById(id: string) {
     return this.prisma.user.findUnique({
       where: {
         id,
       },
       include: {
         cars: true,
-      },
-    });
-  }
-
-  async getUsers() {
-    return this.prisma.user.findMany({
-      select: {
-        number: true,
-        name: true,
-        id: true,
-        role: true,
-        password: false,
       },
     });
   }
@@ -39,7 +27,7 @@ export class UserService {
     });
   }
 
-  async getProfile(id: number) {
+  async getProfile(id: string) {
     const profile = await this.getById(id);
     const cityKilometrs = profile.cars?.map((car) =>
       car.cityDistance.reduce((a: number, b: number) => a + b, 0),
@@ -67,7 +55,7 @@ export class UserService {
   async create(dto: AuthDto) {
     const user = {
       number: dto.number,
-      name: dto.name,
+      name: '',
       password: await hash(dto.password),
     };
 
@@ -76,7 +64,7 @@ export class UserService {
     });
   }
 
-  async update(id: number, dto: UserDto) {
+  async update(id: string, dto: UserDto) {
     let data = dto;
     if (dto.password) {
       data = { ...dto, password: await hash(dto.password) };
@@ -87,6 +75,11 @@ export class UserService {
         id,
       },
       data,
+      select: {
+        id: true,
+        number: true,
+        name: true,
+      },
     });
   }
 }

@@ -6,37 +6,18 @@ import { CarDto } from './car.dto';
 export class CarService {
   constructor(private prisma: PrismaService) {}
 
-  async getCarId(id: number) {
-    return this.prisma.car.findUnique({
-      where: {
-        id,
-      },
-    });
-  }
-
-  async getCars() {
+  async getAll(userId: string) {
     return this.prisma.car.findMany({
-      select: {
-        model: true,
-        id: true,
-        city: true,
-        track: true,
-        otherCity: true,
+      where: {
+        userId,
       },
     });
   }
 
-  async create(dto: CarDto, userId: number) {
-    const car = {
-      model: dto.model,
-      city: dto.city,
-      track: dto.track,
-      otherCity: dto.otherCity,
-    };
-
+  async create(dto: CarDto, userId: string) {
     return this.prisma.car.create({
       data: {
-        ...car,
+        ...dto,
         user: {
           connect: {
             id: userId,
@@ -46,20 +27,20 @@ export class CarService {
     });
   }
 
-  async update(dto: Partial<CarDto>, carId: number, userId: number) {
+  async update(dto: Partial<CarDto>, carId: string, userId: string) {
     return this.prisma.car.update({
       where: {
         userId,
-        id: Number(carId),
+        id: carId,
       },
       data: dto,
     });
   }
 
-  async delete(carId: number) {
+  async delete(carId: string) {
     return this.prisma.car.delete({
       where: {
-        id: Number(carId),
+        id: carId,
       },
     });
   }
