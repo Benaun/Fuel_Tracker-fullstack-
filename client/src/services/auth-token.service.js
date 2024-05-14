@@ -1,12 +1,15 @@
 import Cookies from "js-cookie";
 
+export const ACCESS_TOKEN = 'accessToken'
+export const REFRESH_TOKEN = 'refreshToken'
+
 export const getAccessToken = () => {
-    const accessToken = Cookies.get(accessToken)
+    const accessToken = Cookies.get(ACCESS_TOKEN)
     return accessToken || null
 }
 
 export const saveTokenStorage = (accessToken) => {
-    Cookies.set(accessToken, accessToken, {
+    Cookies.set(ACCESS_TOKEN, accessToken, {
         domain: 'localhost',
         sameSite: 'strict',
         expires: 1
@@ -14,5 +17,5 @@ export const saveTokenStorage = (accessToken) => {
 }
 
 export const removeFromStorage = () => {
-    Cookies.remove(accessToken)
+    Cookies.remove(ACCESS_TOKEN)
 }
