@@ -12,37 +12,32 @@ import {
 } from '@nestjs/common';
 import { CarService } from './car.service';
 import { Auth } from 'src/auth/decorators/auth.decorator';
-import { CurrentUser } from 'src/auth/decorators/user.decorator';
 import { CarDto } from './car.dto';
 
-@Controller('user/cars')
+@Controller('/cars')
 export class CarController {
   constructor(private readonly carService: CarService) {}
 
   @Get()
   @Auth()
-  async getAll(@CurrentUser('id') userId: string) {
-    return this.carService.getAll(userId);
+  async getAll() {
+    return this.carService.getAll();
   }
 
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
   @Post()
   @Auth()
-  async create(@Body() dto: CarDto, @CurrentUser('id') userId: string) {
-    return this.carService.create(dto, userId);
+  async create(@Body() dto: CarDto) {
+    return this.carService.create(dto);
   }
 
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
   @Put(':id')
   @Auth()
-  async update(
-    @Body() dto: CarDto,
-    @CurrentUser('id') userId: string,
-    @Param('id') id: string,
-  ) {
-    return this.carService.update(dto, id, userId);
+  async update(@Body() dto: CarDto, @Param('id') id: string) {
+    return this.carService.update(dto, id);
   }
 
   @HttpCode(200)

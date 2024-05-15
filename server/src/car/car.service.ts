@@ -6,41 +6,55 @@ import { CarDto } from './car.dto';
 export class CarService {
   constructor(private prisma: PrismaService) {}
 
-  async getAll(userId: string) {
-    return this.prisma.car.findMany({
+  async getAll() {
+    return this.prisma.car.findMany();
+  }
+
+  async getById(carId: string) {
+    return this.prisma.car.findUnique({
       where: {
-        userId,
+        carId,
       },
     });
   }
 
-  async create(dto: CarDto, userId: string) {
+  async create(dto: CarDto) {
+    const car = {
+      model: dto.model,
+      city: dto.city,
+      track: dto.track,
+      otherCity: dto.otherCity,
+    };
+
     return this.prisma.car.create({
       data: {
-        ...dto,
-        user: {
-          connect: {
-            id: userId,
-          },
-        },
+        ...car,
+        userId: '',
       },
     });
   }
 
-  async update(dto: Partial<CarDto>, carId: string, userId: string) {
+  async update(dto: CarDto, carId: string) {
+    const data = dto;
+
     return this.prisma.car.update({
       where: {
-        userId,
-        id: carId,
+        carId,
       },
-      data: dto,
+      data,
+      select: {
+        model: true,
+        city: true,
+        track: true,
+        otherCity: true,
+      },
     });
   }
 
   async delete(carId: string) {
     return this.prisma.car.delete({
       where: {
-        id: carId,
+        carId,
       },
     });
   }

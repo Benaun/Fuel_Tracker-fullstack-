@@ -8,21 +8,17 @@ import { UserDto } from './user.dto';
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
-  async getById(id: string) {
+  async getAll() {
+    return this.prisma.user.findMany();
+  }
+
+  async getById(userId: string) {
     return this.prisma.user.findUnique({
       where: {
-        id,
+        userId,
       },
       include: {
         cars: true,
-      },
-    });
-  }
-
-  getByNumber(number: string) {
-    return this.prisma.user.findUnique({
-      where: {
-        number,
       },
     });
   }
@@ -49,7 +45,7 @@ export class UserService {
     });
   }
 
-  async update(id: string, dto: UserDto) {
+  async update(userId: string, dto: UserDto) {
     let data = dto;
     if (dto.password) {
       data = { ...dto, password: await hash(dto.password) };
@@ -57,14 +53,56 @@ export class UserService {
 
     return this.prisma.user.update({
       where: {
-        id,
+        userId,
       },
       data,
       select: {
-        id: true,
+        userId: true,
         number: true,
         name: true,
       },
     });
+  }
+
+  async delete(userId: string) {
+    return this.prisma.user.delete({
+      where: {
+        userId: userId,
+      },
+    });
+  }
+
+  async addCarToUser(carId: string, userId: string) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        userId: userId,
+      },
+      include: {
+        cars: true,
+      },
+    });
+
+    const car = await this.prisma.car.findUnique({
+      where: {
+        carId: carId,
+      },
+    });
+
+    if (!user) throw new Error('Пользователь не найден!');
+
+    const updatedUser = await this.prisma.user.update({
+      where: {
+        userId: userId,
+      },
+      data: {
+        cars: {
+          connect: {
+            carId: car.carId,
+          },
+        },
+      },
+    });
+
+    return updatedUser;
   }
 }

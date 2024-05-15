@@ -8,27 +8,29 @@ datasource db {
 }
 
 model User {
+  userId   String @id @default(cuid()) @map("user_id")
   number   String @unique
   name     String
   password String
-  id       String    @id @default(cuid())
-  role     Role   @default(USER)
-  cars     Car[]
+
+  role Role  @default(USER)
+  cars Car[]
 
   @@map("user")
 }
 
 model Car {
+  carId             String @id @default(cuid()) @map("car")
   model             String
   city              Int
   track             Int
   otherCity         Int    @map("other_city")
-  cityDistance      Int[]  @map("city_distance")
-  trackDistance     Int[]  @map("track_distance")
-  otherCityDistance Int[]  @map("other_city_distance")
-  id                String    @id @default(cuid())
-  userId            String    @map("user_id")
-  user              User   @relation(fields: [userId], references: [id])
+  cityDistance      Int[]  @default([]) @map("city_distance")
+  trackDistance     Int[]  @default([]) @map("track_distance")
+  otherCityDistance Int[]  @default([]) @map("other_city_distance")
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [userId])
 
   @@map("car")
 }
