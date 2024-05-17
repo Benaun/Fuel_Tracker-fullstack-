@@ -1,5 +1,5 @@
 class BOARD {
-    root = '/i'
+    root = '/'
 
     HOME = this.root
     PROFILE = `${this.root}/profile`

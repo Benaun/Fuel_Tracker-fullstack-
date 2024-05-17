@@ -10,9 +10,12 @@ import ProfileIcon from "../ui/profile-icon"
 import Logout from "./Logout"
 import ProfileSettings from "./ProfileSettings"
 import { useProfile } from "@/hooks/useProfile"
+import Users from "./Users"
+import Cars from "./Cars"
 
 export default function Profile() {
     const { data } = useProfile()
+    const userRole = data?.user.role;
     return (
         <DropdownMenu>
             <DropdownMenuTrigger>
@@ -20,9 +23,19 @@ export default function Profile() {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 <DropdownMenuLabel>
-                    {data?.user.name}
+                    {data?.user.name} ({data?.user.number})
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
+                {userRole === 'ADMIN' &&
+                    <>
+                        <DropdownMenuItem>
+                            <Cars />
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <Users />
+                        </DropdownMenuItem>
+                    </>
+                }
                 <DropdownMenuItem>
                     <ProfileSettings />
                 </DropdownMenuItem>

@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation"
-import { MdLogout } from "react-icons/md";
+import { IoLogOutOutline } from "react-icons/io5";
 import { useMutation } from "@tanstack/react-query";
 import { authService } from "@/services/auth.service";
 
@@ -15,8 +15,8 @@ export default function Logout() {
             className="flex gap-2"
             onClick={() => mutate()}
         >
-            <MdLogout
-                size={20}
+            <IoLogOutOutline
+                size={24}
                 className="cursor-pointer hover:fill-slate-700"
             />
             Выйти
