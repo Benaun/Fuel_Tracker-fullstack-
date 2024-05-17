@@ -23,8 +23,16 @@ export class UserService {
     });
   }
 
-  async getProfile(id: string) {
-    const profile = await this.getById(id);
+  getByNumber(number: string) {
+    return this.prisma.user.findUnique({
+      where: {
+        number,
+      },
+    });
+  }
+
+  async getProfile(userId: string) {
+    const profile = await this.getById(userId);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...rest } = profile;
 
