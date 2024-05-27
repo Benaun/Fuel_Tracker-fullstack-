@@ -1,19 +1,19 @@
-import { IsInt, IsString, IsOptional } from 'class-validator';
+import { IsString, IsOptional } from 'class-validator';
 
 export class CarDto {
   @IsString()
   @IsOptional()
-  model: string;
+  model?: string;
 
-  @IsInt()
+  @IsString()
   @IsOptional()
-  city: number;
+  city?: string;
 
-  @IsInt()
+  @IsString()
   @IsOptional()
-  track: number;
+  track?: string;
 
-  @IsInt()
+  @IsString()
   @IsOptional()
-  otherCity: number;
+  otherCity?: string;
 }

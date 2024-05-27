@@ -30,19 +30,6 @@ export class AuthController {
     return response;
   }
 
-  @UsePipes(new ValidationPipe())
-  @HttpCode(200)
-  @Post('register')
-  async register(
-    @Body() dto: AuthDto,
-    @Res({ passthrough: true }) res: Response,
-  ) {
-    const { refreshToken, ...response } = await this.authService.register(dto);
-    this.authService.addRefreshTokenToResponse(res, refreshToken);
-
-    return response;
-  }
-
   @HttpCode(200)
   @Post('logout')
   async logout(@Res({ passthrough: true }) res: Response) {
@@ -68,6 +55,27 @@ export class AuthController {
     const { refreshToken, ...response } = await this.authService.getNewTokens(
       refreshTokenFromCookies,
     );
+    this.authService.addRefreshTokenToResponse(res, refreshToken);
+
+    return response;
+  }
+}
+
+@Controller('/users')
+export class AddUserController {
+  constructor(
+    private readonly authService: AuthService,
+    private readonly userService: UserService,
+  ) {}
+
+  @UsePipes(new ValidationPipe())
+  @HttpCode(200)
+  @Post()
+  async register(
+    @Body() dto: AuthDto,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    const { refreshToken, ...response } = await this.authService.register(dto);
     this.authService.addRefreshTokenToResponse(res, refreshToken);
 
     return response;

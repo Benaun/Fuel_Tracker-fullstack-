@@ -17,9 +17,6 @@ export class UserService {
       where: {
         userId,
       },
-      include: {
-        cars: true,
-      },
     });
   }
 
@@ -44,7 +41,7 @@ export class UserService {
   async create(dto: AuthDto) {
     const user = {
       number: dto.number,
-      name: '',
+      name: dto.name,
       password: await hash(dto.password),
     };
 
@@ -78,39 +75,5 @@ export class UserService {
         userId: userId,
       },
     });
-  }
-
-  async addCarToUser(carId: string, userId: string) {
-    const user = await this.prisma.user.findUnique({
-      where: {
-        userId: userId,
-      },
-      include: {
-        cars: true,
-      },
-    });
-
-    const car = await this.prisma.car.findUnique({
-      where: {
-        carId: carId,
-      },
-    });
-
-    if (!user) throw new Error('Пользователь не найден!');
-
-    const updatedUser = await this.prisma.user.update({
-      where: {
-        userId: userId,
-      },
-      data: {
-        cars: {
-          connect: {
-            carId: car.carId,
-          },
-        },
-      },
-    });
-
-    return updatedUser;
   }
 }

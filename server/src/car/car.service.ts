@@ -27,10 +27,7 @@ export class CarService {
     };
 
     return this.prisma.car.create({
-      data: {
-        ...car,
-        userId: '',
-      },
+      data: car,
     });
   }
 

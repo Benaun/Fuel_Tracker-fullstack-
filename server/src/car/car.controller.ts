@@ -26,18 +26,18 @@ export class CarController {
 
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
-  @Post()
-  @Auth()
-  async create(@Body() dto: CarDto) {
-    return this.carService.create(dto);
-  }
-
-  @UsePipes(new ValidationPipe())
-  @HttpCode(200)
   @Put(':id')
   @Auth()
   async update(@Body() dto: CarDto, @Param('id') id: string) {
     return this.carService.update(dto, id);
+  }
+
+  @UsePipes(new ValidationPipe())
+  @HttpCode(200)
+  @Post()
+  @Auth()
+  async create(@Body() dto: CarDto) {
+    return this.carService.create(dto);
   }
 
   @HttpCode(200)
