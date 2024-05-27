@@ -2,31 +2,15 @@
 
 import { Button } from "@/components/Button"
 import { Heading } from "@/components/Heading"
-import { authService } from "@/services/auth.service"
-import { useMutation } from "@tanstack/react-query"
-import { useRouter } from "next/navigation"
+import { useCreateCar } from "@/app/cars/hooks/useCreatCar"
 import { useForm } from "react-hook-form"
-import toast from "react-hot-toast"
 
-export default function AddUserForm() {
-    const { register, handleSubmit, reset } = useForm({
+export default function AddCarForm() {
+    const { register, handleSubmit } = useForm({
         mode: 'onChange'
     })
-    const router = useRouter()
-    const { mutate } = useMutation({
-        mutationKey: ['users'],
-        mutationFn: (data) => authService.register(data),
-        onSuccess() {
-            toast.success('Пользователь добавлен!')
-            reset()
-            router.push('/users')
-        },
-        onError() {
-            toast.error('Такой уже есть!')
-        }
-    })
-
-    const onSubmit = (data) => { mutate(data) }
+    const { createCar } = useCreateCar()
+    const onSubmit = (data) => { createCar(data) }
 
     return (
         <div className="flex min-h-screen mt-24">
@@ -34,14 +18,14 @@ export default function AddUserForm() {
                 className="max-w-sm mx-auto"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <Heading title='Новый пользователь' />
+                <Heading title='Новый автомобиль' />
                 <div className="mb-5">
                     <input type="string"
                         className="bg-gray-200 border border-gray-300 text-gray-900 text-md rounded-lg focus:outline-none block w-full p-2.5"
-                        placeholder="Позывной"
-                        {...register('number',
+                        placeholder="Модель"
+                        {...register('model',
                             {
-                                require: 'Number is reqired'
+                                require: 'model is reqired'
 
                             }
                         )}
@@ -50,22 +34,34 @@ export default function AddUserForm() {
                 <div className="mb-5">
                     <input type="string"
                         className="bg-gray-200 border border-gray-300 text-gray-900 text-md rounded-lg focus:outline-none block w-full p-2.5"
-                        placeholder="Имя"
-                        {...register('name',
+                        placeholder="Город"
+                        {...register('city',
                             {
-                                require: 'Name is reqired'
+                                require: 'City is reqired'
 
                             }
                         )}
                     />
                 </div>
                 <div className="mb-5">
-                    <input type="password"
+                    <input type="string"
                         className="bg-gray-200 border border-gray-300 text-gray-900 text-md rounded-lg focus:outline-none block w-full p-2.5"
-                        placeholder="Пароль"
-                        {...register('password',
+                        placeholder="Трасса"
+                        {...register('track',
                             {
-                                require: 'Password is reqired'
+                                require: 'Track is reqired'
+
+                            }
+                        )}
+                    />
+                </div>
+                <div className="mb-5">
+                    <input type="string"
+                        className="bg-gray-200 border border-gray-300 text-gray-900 text-md rounded-lg focus:outline-none block w-full p-2.5"
+                        placeholder="Др.город"
+                        {...register('otherCity',
+                            {
+                                require: 'Other city is reqired'
 
                             }
                         )}

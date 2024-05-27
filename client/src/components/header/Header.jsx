@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Header() {
     return (
-        <header className="fixed rounded-b top-0 left-0 right-0 max-w-[430px] mx-auto justify-center bg-[#F1EBF5]">
+        <header className="fixed z-10 rounded-b top-0 left-0 right-0 max-w-[430px] mx-auto justify-center bg-[#F1EBF5]">
             <section className="flex p-4 justify-between items-center">
                 <Link href={"/"}>
                     <div className="w-[35px] cursor-pointer">

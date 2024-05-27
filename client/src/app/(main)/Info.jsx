@@ -1,16 +1,16 @@
 'use client'
 
-import { useProfile } from "@/hooks/useProfile";
+import { useGetAllCars } from "@/hooks/useGetAllCars";
 
 export default function Info() {
-    const { data, isLoading } = useProfile()
+    const { data, isLoading } = useGetAllCars()
 
     return (
         <div className="flex flex-wrap mx-auto my-24 max-w-[430px] gap-4 justify-center">
-            {data ? data.user.cars.map(car => (
+            {data ? data.map(car => (
                 <div
                     className="max-w-sm rounded bg-slate-300 overflow-hidden shadow-lg w-full" 
-                    key={car.id}
+                    key={car.carId}
                 >
                     <div className="flex items-center justify-center my-2">
                         <div className="font-bold text-xl">{car.model}</div>

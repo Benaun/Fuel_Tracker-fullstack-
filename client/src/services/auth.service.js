@@ -2,12 +2,17 @@ import { axiosBasic } from "@/api/interceptors"
 import { removeFromStorage, saveTokenStorage } from "./auth-token.service"
 
 export const authService = {
-    async main(type, data) {
-        const response = await axiosBasic.post(`/auth/${type}`, data)
+    async main(data) {
+        const response = await axiosBasic.post(`/auth/login`, data)
 
         if (response.data.accessToken) {
             saveTokenStorage(response.data.accessToken)
         }
+        return response
+    },
+
+    async register(data) {
+        const response = await axiosBasic.post(`/users/`, data)
         return response
     },
 

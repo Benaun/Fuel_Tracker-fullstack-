@@ -6,19 +6,17 @@ import { BOARD_PAGES } from "@/config/pages-url.config"
 import { authService } from "@/services/auth.service"
 import { useMutation } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
 import { useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 
 export default function Auth() {
-    const [isLoginForm, setIsLoginForm] = useState(false)
     const { register, handleSubmit, reset } = useForm({
         mode: 'onChange'
     })
     const { push } = useRouter()
     const { mutate } = useMutation({
         mutationKey: ['auth'],
-        mutationFn: (data) => authService.main('login', data),
+        mutationFn: (data) => authService.main(data),
         onSuccess() {
             toast.success('Вход выполнен!')
             reset()
@@ -66,16 +64,8 @@ export default function Auth() {
                 <div className="flex gap-7">
                     <Button
                         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        onClick={() => setIsLoginForm(true)}
                     >
                         Войти
-                    </Button>
-
-                    <Button
-                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        onClick={() => setIsLoginForm(false)}
-                    >
-                        Регистрация
                     </Button>
                 </div>
             </form>

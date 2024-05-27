@@ -12,18 +12,31 @@ import {
 import { Skeleton } from "@/components/ui/skeleton"
 import { useGetAllUsers } from "@/hooks/useGetAllUsers";
 import Link from "next/link";
+import { useDeleteUser } from "@/app/users/hooks/useDeleteUser";
+import { FaUserSlash } from "react-icons/fa";
+import { FaUserPlus } from "react-icons/fa6";
+import { LiaUserEditSolid } from "react-icons/lia";
 
 export default function UsersTable() {
     const { data, isLoading } = useGetAllUsers();
+    const { deleteUser } = useDeleteUser();
 
     return (
         <div className="flex flex-wrap mx-auto w-full my-24 max-w-[430px] gap-4 justify-center">
             <Table>
                 <TableCaption>
-                    Таблица пользователей
-                    <Link href={"/users/register"}>
-                        <button>+</button>
-                    </Link>
+                    <div className="flex justify-center items-center gap-2">
+                        Таблица пользователей
+                        <Link
+                            href={"/users/register"}
+                            className="cursor-pointer"
+                        >
+                            <FaUserPlus
+                                size={20}
+                                fill="green"
+                            />
+                        </Link>
+                    </div>
                 </TableCaption>
                 <TableHeader>
                     <TableRow>
@@ -53,8 +66,15 @@ export default function UsersTable() {
                                 <TableCell>{item.role}</TableCell>
                                 <TableCell>********</TableCell>
                                 <TableCell className="flex gap-1 justify-center">
-                                    <span>Ed</span>
-                                    <span>Del</span>
+                                    <LiaUserEditSolid
+                                        size={20}
+                                        fill="orange"
+                                    />
+                                    <FaUserSlash
+                                        size={20}
+                                        fill="red"
+                                        onClick={() => deleteUser(item.userId)}
+                                    />
                                 </TableCell>
                             </TableRow>
                         ))

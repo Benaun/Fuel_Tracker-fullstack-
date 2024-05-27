@@ -9,7 +9,7 @@ import {
 import ProfileIcon from "../ui/profile-icon"
 import Logout from "./Logout"
 import ProfileSettings from "./ProfileSettings"
-import { useProfile } from "@/hooks/useProfile"
+import { useProfile } from "@/app/settings/hooks/useProfile"
 import Users from "./Users"
 import Cars from "./Cars"
 

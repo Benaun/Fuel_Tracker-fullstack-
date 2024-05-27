@@ -1,7 +1,7 @@
 import { Button } from "@/components/Button"
 import { Heading } from "@/components/Heading"
-import { useAddData } from "@/hooks/useAddData"
-import { useUpdateProfile } from "@/hooks/useUpdateProfile"
+import { useAddData } from "@/app/settings/hooks/useAddProfileData"
+import { useUpdateProfile } from "@/app/settings/hooks/useUpdateProfile"
 import { useForm } from "react-hook-form"
 
 export default function UpdateForm() {

@@ -1,10 +1,10 @@
-import { userService } from "@/services/user.service";
+import { carService } from "@/services/car.service";
 import { useQuery } from "@tanstack/react-query";
 
 export function useGetAllCars() {
     const { data, isLoading, isSuccess } = useQuery({
-        queryKey: ['profile'],
-        queryFn: () => userService.getProfile()
+        queryKey: ['cars'],
+        queryFn: () => carService.getCars()
     })
 
     return { data, isLoading, isSuccess }
