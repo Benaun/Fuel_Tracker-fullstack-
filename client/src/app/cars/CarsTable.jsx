@@ -19,7 +19,7 @@ import { FaCar } from "react-icons/fa";
 import { CiCirclePlus } from "react-icons/ci";
 
 export default function CarsTable() {
-    const { data, isLoading } = useGetAllCars();
+    const { cars, isLoading } = useGetAllCars();
     const { deleteCar } = useDeleteCar()
 
     return (
@@ -61,7 +61,7 @@ export default function CarsTable() {
                             <TableCell><Skeleton className="h-4 w-[67px]" /></TableCell>
                             <TableCell><Skeleton className="h-4 w-[53px]" /></TableCell>
                         </TableRow>
-                        : data?.map((car) => (
+                        : cars?.map((car) => (
                             <TableRow
                                 key={car.carId}
                                 className="text-center"

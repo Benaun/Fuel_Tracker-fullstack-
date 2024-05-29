@@ -43,6 +43,14 @@ export class GetAllUsersController {
     return this.userService.getAll();
   }
 
+  @UsePipes(new ValidationPipe())
+  @HttpCode(200)
+  @Put(':id')
+  @Auth()
+  async updateUserProfile(@Param('id') id: string, @Body() dto: UserDto) {
+    return this.userService.update(id, dto);
+  }
+
   @HttpCode(200)
   @Delete(':id')
   @Auth()

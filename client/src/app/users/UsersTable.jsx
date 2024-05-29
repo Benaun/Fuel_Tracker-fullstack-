@@ -16,10 +16,12 @@ import { useDeleteUser } from "@/app/users/hooks/useDeleteUser";
 import { FaUserSlash } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa6";
 import { LiaUserEditSolid } from "react-icons/lia";
+import { useFormContext } from "react-hook-form";
 
-export default function UsersTable() {
-    const { data, isLoading } = useGetAllUsers();
+export default function UsersTable({ isHidden }) {
+    const { users, isLoading } = useGetAllUsers();
     const { deleteUser } = useDeleteUser();
+    const { reset } = useFormContext();
 
     return (
         <div className="flex flex-wrap mx-auto w-full my-24 max-w-[430px] gap-4 justify-center">
@@ -56,7 +58,7 @@ export default function UsersTable() {
                             <TableCell><Skeleton className="h-4 w-[60px]" /></TableCell>
                             <TableCell><Skeleton className="h-4 w-[60px]" /></TableCell>
                         </TableRow>
-                        : data.map((item) => (
+                        : users.map((item) => (
                             <TableRow
                                 key={item.userId}
                                 className="text-center"
@@ -69,6 +71,16 @@ export default function UsersTable() {
                                     <LiaUserEditSolid
                                         size={20}
                                         fill="orange"
+                                        onClick={() =>{
+                                            reset({
+                                                userId: item.userId,
+                                                number: item.number,
+                                                name: item.name,
+                                                role: item.role,
+                                                password: ''
+                                            });
+                                            isHidden(false)
+                                        }}
                                     />
                                     <FaUserSlash
                                         size={20}
