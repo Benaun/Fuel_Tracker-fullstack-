@@ -1,14 +1,13 @@
-import Link from "next/link";
 import { CiSettings } from "react-icons/ci";
+import Icon from "../ui/icon";
 
 export default function ProfileSettings() {
     return (
-        <Link
-            href={'/settings'}
-            className="flex gap-2 items-center"
+        <Icon
+            link={'/settings'}
+            title={'Настройки'}
         >
             <CiSettings size={24} className="cursor-pointer" />
-            Настройки
-        </Link>
+        </Icon>
     )
 }

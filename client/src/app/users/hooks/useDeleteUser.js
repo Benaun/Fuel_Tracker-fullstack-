@@ -14,6 +14,5 @@ export function useDeleteUser() {
             toast.success('Пользователь удален')
         }
     })
-
     return { deleteUser }
 }

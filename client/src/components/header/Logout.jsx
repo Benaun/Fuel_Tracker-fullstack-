@@ -1,19 +1,12 @@
-import { useRouter } from "next/navigation"
 import { IoLogOutOutline } from "react-icons/io5";
-import { useMutation } from "@tanstack/react-query";
-import { authService } from "@/services/auth.service";
+import { useLogout } from "@/hooks/useLogout";
 
 export default function Logout() {
-    const router = useRouter()
-    const { mutate } = useMutation({
-        mutationKey: ['logout'],
-        mutationFn: () => authService.logout(),
-        onSuccess: () => router.push('/auth')
-    })
+    const { logout } = useLogout()
     return (
         <div
             className="flex gap-2"
-            onClick={() => mutate()}
+            onClick={() => logout()}
         >
             <IoLogOutOutline
                 size={24}
@@ -21,7 +14,5 @@ export default function Logout() {
             />
             Выйти
         </div>
-
-
     )
 }   

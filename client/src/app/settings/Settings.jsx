@@ -1,6 +1,6 @@
 'use client'
 
-import UpdateForm from "./updateForm"
+import UpdateForm from "./update-form"
 
 export default function Settings() {
     return (

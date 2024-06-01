@@ -1,6 +1,6 @@
 import { NO_INDEX_PAGE } from "@/constants/seo.constants";
-import UserLayout from "@/components/UserLayout";
-import Main from "./Main";
+import UserLayout from "@/components/user-layout";
+import MainUsersPage from ".";
 
 export const metadata = {
     title: 'Пользователи',
@@ -10,7 +10,7 @@ export const metadata = {
 export default function UsersPage() {
     return (
         <UserLayout>
-            <Main />
+            <MainUsersPage />
         </UserLayout>
     )
 }

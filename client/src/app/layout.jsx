@@ -3,8 +3,6 @@ import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import { Providers } from "./providers";
 import { SITE_NAME } from "@/constants/seo.constants";
-import Header from "@/components/header/Header";
-import Footer from "@/components/Footer";
 
 const main = Montserrat({
   weight: ['400', '500', '600', '700'],

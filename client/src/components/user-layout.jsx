@@ -1,5 +1,5 @@
-import Footer from "./Footer";
-import Header from "./header/Header";
+import Footer from "./ui/footer";
+import Header from "./header/header";
 
 
 export default function UserLayout({ children }) {

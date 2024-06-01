@@ -1,29 +1,35 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 import { useForm } from "react-hook-form"
-import { useAuthUser } from "./hooks/useAuthUser"
+import { useCreateUser } from "../hooks/useCreateUser"
+import { Button } from "@/components/ui/button"
 import Field from "@/components/ui/field"
 
-export default function Auth() {
+export default function AddUserForm() {
     const { register, handleSubmit, reset } = useForm({
         mode: 'onChange'
     })
-    const { auth } = useAuthUser()
-    const onSubmit = (data) => { auth(data), reset() }
+    const { createUser } = useCreateUser()
+    const onSubmit = (data) => { createUser(data), reset() }
 
     return (
-        <div className="flex min-h-screen">
+        <div className="flex min-h-screen mt-24">
             <form
-                className="max-w-sm m-auto"
+                className="max-w-sm mx-auto"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <Heading title='Авторизация' />
+                <Heading title='Новый пользователь' />
                 <Field
                     type={'string'}
                     placeholder={'Позывной'}
                     fieldName={'number'}
+                    register={register}
+                />
+                <Field
+                    type={'string'}
+                    placeholder={'Имя'}
+                    fieldName={'name'}
                     register={register}
                 />
                 <Field
@@ -32,12 +38,11 @@ export default function Auth() {
                     fieldName={'password'}
                     register={register}
                 />
-
                 <div className="flex justify-center">
                     <Button
                         className="w-full bg-blue-700 hover:bg-blue-800"
                     >
-                        Войти
+                        Добавить
                     </Button>
                 </div>
             </form>

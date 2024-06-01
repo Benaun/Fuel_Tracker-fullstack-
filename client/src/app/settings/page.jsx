@@ -1,6 +1,6 @@
 import { NO_INDEX_PAGE } from "@/constants/seo.constants";
-import Settings from "./Settings";
-import UserLayout from "@/components/UserLayout";
+import Settings from "./settings";
+import UserLayout from "@/components/user-layout";
 
 export const metadata = {
     title: 'Настройки',

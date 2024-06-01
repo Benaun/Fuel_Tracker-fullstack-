@@ -7,11 +7,11 @@ import {
     DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
 import ProfileIcon from "../ui/profile-icon"
-import Logout from "./Logout"
-import ProfileSettings from "./ProfileSettings"
+import Logout from "./logout"
+import ProfileSettings from "./profile-settings"
 import { useProfile } from "@/app/settings/hooks/useProfile"
-import Users from "./Users"
-import Cars from "./Cars"
+import Users from "./users"
+import Cars from "./cars"
 
 export default function Profile() {
     const { data } = useProfile()
