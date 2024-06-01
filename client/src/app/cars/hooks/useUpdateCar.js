@@ -1,18 +1,21 @@
 import { carService } from "@/services/car.service";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
-export function useUpdateCar(key) {
+export function useUpdateCar() {
     const queryClient = useQueryClient()
-
     const { mutate: updateCar } = useMutation({
-        mutationKey: ['update car', key],
-        mutationFn: ({ id, data }) => carService.updateCar(id, data),
+        mutationKey: ['update car'],
+        mutationFn: ({ carId, data }) => carService.updateCar(carId, data),
         onSuccess() {
+            toast.success('Данные обновлены!')
             queryClient.invalidateQueries({
                 queryKey: ['cars']
             })
+        },
+        onError() {
+            toast.error('Что-то пошло не так...')
         }
     })
-
     return { updateCar }
 }

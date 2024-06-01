@@ -1,5 +1,3 @@
-'use client'
-
 import {
     Table,
     TableBody,
@@ -17,10 +15,12 @@ import { FaCarBurst } from "react-icons/fa6";
 import { MdOutlineCarCrash } from "react-icons/md";
 import { FaCar } from "react-icons/fa";
 import { CiCirclePlus } from "react-icons/ci";
+import { useFormContext } from "react-hook-form";
 
-export default function CarsTable() {
+export default function CarsTable({ isHidden }) {
     const { cars, isLoading } = useGetAllCars();
-    const { deleteCar } = useDeleteCar()
+    const { deleteCar } = useDeleteCar();
+    const { reset } = useFormContext();
 
     return (
         <div className="flex flex-wrap mx-auto w-full my-24 max-w-[430px] gap-4 justify-center">
@@ -74,6 +74,16 @@ export default function CarsTable() {
                                     <MdOutlineCarCrash
                                         fill="orange"
                                         size={20}
+                                        onClick={() => {
+                                            reset({
+                                                carId: car.carId,
+                                                model: car.model,
+                                                city: car.city,
+                                                track: car.track,
+                                                otherCity: car.otherCity
+                                            });
+                                            isHidden(false)
+                                        }}
                                     />
                                     <FaCarBurst
                                         size={20}

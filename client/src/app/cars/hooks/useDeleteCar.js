@@ -12,8 +12,10 @@ export function useDeleteCar() {
             queryClient.invalidateQueries({
                 queryKey: ['cars']
             })
+        },
+        onError() {
+            toast.error('Что-то пошло не так...')
         }
     })
-
     return { deleteCar }
 }

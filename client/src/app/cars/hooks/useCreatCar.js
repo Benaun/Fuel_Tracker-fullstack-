@@ -16,6 +16,9 @@ export function useCreateCar() {
             })
             router.push('/cars')
         },
+        onError() {
+            toast.error('Что-то пошло не так...')
+        }
     })
     return { createCar }
 }
