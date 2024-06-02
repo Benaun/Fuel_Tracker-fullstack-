@@ -13,6 +13,7 @@ import { UserService } from './user.service';
 import { CurrentUser } from 'src/auth/decorators/user.decorator';
 import { UserDto } from './user.dto';
 import { Auth } from 'src/auth/decorators/auth.decorator';
+import { CarDto } from 'src/car/car.dto';
 
 @Controller('user/profile')
 export class UserController {
@@ -49,6 +50,25 @@ export class GetAllUsersController {
   @Auth()
   async updateUserProfile(@Param('id') id: string, @Body() dto: UserDto) {
     return this.userService.update(id, dto);
+  }
+
+  @UsePipes(new ValidationPipe())
+  @HttpCode(200)
+  @Put()
+  @Auth()
+  async addCarToUser(
+    @CurrentUser('userId') userId: string,
+    @Body() dto: CarDto,
+  ) {
+    return this.userService.addCarToUser(userId, dto);
+  }
+
+  @UsePipes(new ValidationPipe())
+  @HttpCode(200)
+  @Put()
+  @Auth()
+  async removeCarFromUser(@CurrentUser('userId') userId: string) {
+    return this.userService.removeCarFromUser(userId);
   }
 
   @HttpCode(200)

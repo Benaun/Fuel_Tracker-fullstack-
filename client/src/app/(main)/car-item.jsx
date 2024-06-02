@@ -1,4 +1,6 @@
-export default function CarItem({ item }) {
+
+
+export default function CarItem({ item, children }) {
     return (
         <>
             <div className="flex items-center justify-center my-2">
@@ -20,6 +22,7 @@ export default function CarItem({ item }) {
                 >
                     <span>Др.гор: </span> <span>{item.otherCity}</span>
                 </div>
+                {children}
             </div>
         </>
     )

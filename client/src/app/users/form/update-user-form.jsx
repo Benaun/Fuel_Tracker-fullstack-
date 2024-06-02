@@ -1,8 +1,9 @@
-import { Heading } from "@/components/ui/heading"
+
 import { useFormContext } from "react-hook-form"
 import { useUpdateUser } from "../hooks/useUpdateUser"
 import { Button } from "@/components/ui/button"
 import Field from "@/components/ui/field"
+import { Heading } from "@/components/ui/heading"
 
 export default function UpdateUserForm({ isHidden }) {
     const { register, reset, handleSubmit, watch } = useFormContext()

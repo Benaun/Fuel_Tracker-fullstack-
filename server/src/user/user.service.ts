@@ -70,9 +70,44 @@ export class UserService {
   }
 
   async delete(userId: string) {
-    return this.prisma.user.delete({
+    return await this.prisma.user.delete({
       where: {
         userId: userId,
+      },
+    });
+  }
+
+  async addCarToUser(userId: string, dto: any) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        userId,
+      },
+    });
+    return await this.prisma.user.update({
+      where: {
+        userId: user.userId,
+      },
+      data: {
+        userCars: [dto],
+      },
+      select: {
+        userCars: true,
+      },
+    });
+  }
+
+  async removeCarFromUser(userId: string) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        userId,
+      },
+    });
+    return await this.prisma.user.update({
+      where: {
+        userId: user.userId,
+      },
+      data: {
+        userCars: [],
       },
     });
   }

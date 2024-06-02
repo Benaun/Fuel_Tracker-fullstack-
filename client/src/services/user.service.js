@@ -21,6 +21,16 @@ export const userService = {
         return response.data
     },
 
+    async addCarToUser(data) {
+        const response = await axiosWithAuth.put('/users', data)
+        return response.data
+    },
+
+    async removeCarFromUser() {
+        const response = await axiosWithAuth.put('/users')
+        return response.data
+    },
+
     async deleteUser(id){
         const response = await axiosWithAuth.delete(`/users/${id}`)
         return response.data
