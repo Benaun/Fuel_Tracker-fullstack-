@@ -1,7 +1,6 @@
 import { NO_INDEX_PAGE } from "@/constants/seo.constants";
 import UserLayout from "@/components/user-layout";
-import MainPage from ".";
-
+import CarsList from "./cars-list";
 
 export const metadata = {
     title: 'Fuel Tracker',
@@ -10,6 +9,6 @@ export const metadata = {
 
 export default function Home() {
     return <UserLayout>
-        <MainPage />
+        <CarsList />
     </UserLayout>
 }

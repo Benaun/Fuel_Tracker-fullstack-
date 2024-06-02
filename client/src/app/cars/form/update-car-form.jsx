@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import Field from "@/components/ui/field"
 import { useUpdateCar } from "../hooks/useUpdateCar"
 
-
 export default function UpdateCarForm({ isHidden }) {
     const { register, reset, handleSubmit, watch } = useFormContext();
     const existedId = watch('carId')
@@ -12,7 +11,7 @@ export default function UpdateCarForm({ isHidden }) {
 
     const onSubmit = (data) => {
         const { carId, ...rest } = data
-        const dto = {...rest}
+        const dto = { ...rest }
         if (carId) {
             updateCar({ carId, data: dto })
         }
@@ -27,7 +26,7 @@ export default function UpdateCarForm({ isHidden }) {
     }
 
     return (
-        <div className="flex min-h-screen mt-24">
+        <div className="flex min-h-screen mt-24 relative">
             <form
                 className="max-w-sm mx-auto"
                 onSubmit={handleSubmit(onSubmit)}
@@ -57,13 +56,21 @@ export default function UpdateCarForm({ isHidden }) {
                     fieldName={'otherCity'}
                     register={register}
                 />
-                <div className="flex justify-center">
+                <div className="flex justify-between">
                     <Button
-                        className="w-full bg-blue-700 hover:bg-blue-800"
+                        type='submit'
+                        className="w-5/12 bg-blue-700 hover:bg-blue-800"
                     >
                         Обновить
                     </Button>
+                    <Button
+                        className="w-5/12 bg-red-400 hover:bg-red-500"
+                        onClick={() =>isHidden(true)}
+                    >
+                        Отменить
+                    </Button>
                 </div>
+
             </form>
         </div>
     )

@@ -20,7 +20,7 @@ import { useFormContext } from "react-hook-form";
 export default function CarsTable({ isHidden }) {
     const { cars, isLoading } = useGetAllCars();
     const { deleteCar } = useDeleteCar();
-    const { reset } = useFormContext();
+    const { reset: editCar } = useFormContext();
 
     return (
         <div className="flex flex-wrap mx-auto w-full my-24 max-w-[430px] gap-4 justify-center">
@@ -75,7 +75,7 @@ export default function CarsTable({ isHidden }) {
                                         fill="orange"
                                         size={20}
                                         onClick={() => {
-                                            reset({
+                                            editCar({
                                                 carId: car.carId,
                                                 model: car.model,
                                                 city: car.city,

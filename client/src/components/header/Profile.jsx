@@ -12,6 +12,7 @@ import ProfileSettings from "./profile-settings"
 import { useProfile } from "@/app/settings/hooks/useProfile"
 import Users from "./users"
 import Cars from "./cars"
+import MyCar from "./my-car"
 
 export default function Profile() {
     const { data } = useProfile()
@@ -26,13 +27,18 @@ export default function Profile() {
                     {data?.user.name} ({data?.user.number})
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                {userRole === 'ADMIN' &&
-                    <>
+                {userRole === 'ADMIN'
+                    ? <>
                         <DropdownMenuItem>
                             <Cars />
                         </DropdownMenuItem>
                         <DropdownMenuItem>
                             <Users />
+                        </DropdownMenuItem>
+                    </>
+                    : <>
+                        <DropdownMenuItem>
+                            <MyCar />
                         </DropdownMenuItem>
                     </>
                 }

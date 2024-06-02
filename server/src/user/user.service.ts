@@ -108,6 +108,9 @@ export class UserService {
       },
       data: {
         userCars: [],
+        cityDistance: [],
+        trackDistance: [],
+        otherCityDistance: [],
       },
     });
   }

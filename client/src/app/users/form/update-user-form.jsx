@@ -61,11 +61,17 @@ export default function UpdateUserForm({ isHidden }) {
                     fieldName={'password'}
                     register={register}
                 />
-                <div className="flex justify-center">
+                <div className="flex justify-between">
                     <Button
-                        className="w-full bg-blue-700 hover:bg-blue-800"
+                        className="w-5/12 bg-blue-700 hover:bg-blue-800"
                     >
                         Обновить
+                    </Button>
+                    <Button
+                        className="w-5/12 bg-red-400 hover:bg-red-500"
+                        onClick={() =>isHidden(true)}
+                    >
+                        Отменить
                     </Button>
                 </div>
             </form>
