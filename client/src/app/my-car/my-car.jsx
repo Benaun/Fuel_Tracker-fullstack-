@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Heading } from "@/components/ui/heading";
 import { useRemoveCarFromUser } from "./hooks/useRemoveCarFromUser";
 import { useRouter } from "next/navigation";
+import DistanceFieldSection from "./distance-field-section";
 
 export default function MyCar() {
     const { data } = useProfile();
@@ -15,9 +16,10 @@ export default function MyCar() {
     const router = useRouter()
 
     return <>
-        <div className="flex flex-wrap mx-auto my-24 max-w-[430px] gap-4 justify-center">
+        <div className="flex flex-wrap mx-auto my-24 max-w-[430px] justify-center">
             {isUserCar?.model
-                ? <div
+                ?
+                <div
                     className="max-w-md px-7 rounded bg-slate-300 overflow-hidden shadow-lg w-full relative"
                     key={isUserCar.carId}
                 >
@@ -32,6 +34,20 @@ export default function MyCar() {
                             }}>
                         </FaWindowClose>
                     </CarItem>
+                    <div className="flex flex-col gap-3 my-4">
+                        <DistanceFieldSection 
+                            title={'Город'}
+                            number={isUserCar.city}
+                        />
+                        <DistanceFieldSection 
+                            title={'Трасса'}
+                            number={isUserCar.track}
+                        />
+                        <DistanceFieldSection 
+                            title={'Др.город'}
+                            number={isUserCar.otherCity}
+                        />
+                    </div>
                 </div>
                 : <Link href={'/'}>
                     <Heading title='Выберите авто...' />
