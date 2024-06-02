@@ -18,6 +18,7 @@ export default function Header() {
                             src="/logo.png"
                             alt="Logo"
                             sizes="100vw"
+                            loading="eager"
                             className=" w-full h-auto rounded-full"
                         />
                     </div>
