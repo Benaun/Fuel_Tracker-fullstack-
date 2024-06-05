@@ -38,19 +38,19 @@ export default function UpdateUserForm({ isHidden }) {
             >
                 <Heading title='Обновить' />
                 <Field
-                    type={'string'}
+                    type={'text'}
                     placeholder={'Позывной'}
                     fieldName={'number'}
                     register={register}
                 />
                 <Field
-                    type={'string'}
+                    type={'text'}
                     placeholder={'Имя'}
                     fieldName={'name'}
                     register={register}
                 />
                 <Field
-                    type={'string'}
+                    type={'text'}
                     placeholder={'Роль'}
                     fieldName={'role'}
                     register={register}

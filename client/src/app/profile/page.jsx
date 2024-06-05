@@ -1,16 +1,16 @@
 import { NO_INDEX_PAGE } from "@/constants/seo.constants";
-import MainUsersPage from ".";
+import Profile from "./profile";
 import Layout from "@/components/layout/main-layout";
 
 export const metadata = {
-    title: 'Пользователи',
+    title: 'Настройки',
     ...NO_INDEX_PAGE
 }
 
-export default function UsersPage() {
+export default function ProfilePage() {
     return (
         <Layout>
-            <MainUsersPage />
+            <Profile />
         </Layout>
     )
 }

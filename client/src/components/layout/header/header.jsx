@@ -1,8 +1,6 @@
-'use client'
-
 import Image from "next/image";
-import Profile from "./profile";
-import Icon from "../ui/icon";
+import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
+import Icon from "@/components/ui/icon";
 
 export default function Header() {
     return (
@@ -26,7 +24,18 @@ export default function Header() {
                 <h2 className="text-2xl font-semibold">
                     Fuel Tracker
                 </h2>
-                <Profile />
+                <div className="flex gap-2 md:gap-5">
+                    <FaWhatsapp
+                        size={25}
+                        fill={"#16a34a"}
+                        className="hover:fill-green-900 ease-in duration-300 cursor-pointer"
+                    />
+                    <FaTelegramPlane
+                        size={26}
+                        fill={"#0284c7"}
+                        className="hover:fill-sky-900 ease-in duration-300 cursor-pointer"
+                    />
+                </div>
             </section>
         </header>
     )

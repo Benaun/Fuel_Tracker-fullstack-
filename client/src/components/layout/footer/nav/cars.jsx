@@ -1,15 +1,15 @@
 import { BsCarFront } from "react-icons/bs";
-import Icon from "../ui/icon";
+import Icon from "@/components/ui/icon";
 
 export default function Cars() {
     return (
         <Icon
             link={'/cars'}
-            title={'cars'}
         >
             <BsCarFront
+                fill={"#fff"} 
                 size={25}
-                className="cursor-pointer hover:fill-slate-700"
+                className="cursor-pointer"
             />
         </Icon>
     )

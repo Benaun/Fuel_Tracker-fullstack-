@@ -9,10 +9,10 @@ export default function Logout() {
             onClick={() => logout()}
         >
             <IoLogOutOutline
+                color={"#fff"}
                 size={24}
-                className="cursor-pointer hover:fill-slate-700"
+                className="cursor-pointer"
             />
-            Выйти
         </div>
     )
 }   

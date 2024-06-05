@@ -1,9 +1,9 @@
-import { useAddData } from "@/app/settings/hooks/useAddProfileData"
-import { useUpdateProfile } from "@/app/settings/hooks/useUpdateProfile"
 import { useForm } from "react-hook-form"
 import Field from "@/components/ui/field"
 import { Button } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
+import { useAddData } from "./hooks/useAddProfileData"
+import { useUpdateProfile } from "./hooks/useUpdateProfile"
 
 export default function UpdateForm() {
     const { register, handleSubmit, reset } = useForm({

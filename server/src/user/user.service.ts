@@ -12,10 +12,10 @@ export class UserService {
     return this.prisma.user.findMany();
   }
 
-  async getById(userId: string) {
+  async getById(id: string) {
     return this.prisma.user.findUnique({
       where: {
-        userId,
+        id,
       },
     });
   }
@@ -50,7 +50,7 @@ export class UserService {
     });
   }
 
-  async update(userId: string, dto: UserDto) {
+  async update(id: string, dto: UserDto) {
     let data = dto;
     if (dto.password) {
       data = { ...dto, password: await hash(dto.password) };
@@ -58,34 +58,30 @@ export class UserService {
 
     return this.prisma.user.update({
       where: {
-        userId,
+        id,
       },
       data,
       select: {
-        userId: true,
+        id: true,
         number: true,
         name: true,
       },
     });
   }
 
-  async delete(userId: string) {
+  async delete(id: string) {
     return await this.prisma.user.delete({
       where: {
-        userId: userId,
+        id,
       },
     });
   }
 
-  async addCarToUser(userId: string, dto: any) {
-    const user = await this.prisma.user.findUnique({
+  async addCarToUser(id: string, dto: any) {
+    const user = await this.getById(id);
+    await this.prisma.user.update({
       where: {
-        userId,
-      },
-    });
-    return await this.prisma.user.update({
-      where: {
-        userId: user.userId,
+        id,
       },
       data: {
         userCars: [dto],
@@ -94,24 +90,23 @@ export class UserService {
         userCars: true,
       },
     });
+
+    return user;
   }
 
-  async removeCarFromUser(userId: string) {
-    const user = await this.prisma.user.findUnique({
-      where: {
-        userId,
-      },
-    });
-    return await this.prisma.user.update({
-      where: {
-        userId: user.userId,
-      },
-      data: {
-        userCars: [],
-        cityDistance: [],
-        trackDistance: [],
-        otherCityDistance: [],
-      },
-    });
-  }
+  // async removeCarFromUser(id: string) {
+  //   const user = await this.getById(id);
+  //   await this.prisma.user.update({
+  //     where: {
+  //       id,
+  //     },
+  //     data: {
+  //       userCars: [],
+  //       cityDistance: [],
+  //       trackDistance: [],
+  //       otherCityDistance: [],
+  //     },
+  //   });
+  //   return user;
+  // }
 }

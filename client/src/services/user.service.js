@@ -2,12 +2,12 @@ import { axiosWithAuth } from "@/api/interceptors";
 
 export const userService = {
     async getProfile() {
-        const response = await axiosWithAuth.get('/user/profile')
+        const response = await axiosWithAuth.get('/users/profile')
         return response.data
     },
 
     async update(data) {
-        const response = await axiosWithAuth.put('/user/profile', data)
+        const response = await axiosWithAuth.put('/users/profile', data)
         return response.data
     },
 
@@ -34,5 +34,5 @@ export const userService = {
     async deleteUser(id){
         const response = await axiosWithAuth.delete(`/users/${id}`)
         return response.data
-    }
+    },
 }

@@ -10,20 +10,20 @@ export class CarService {
     return this.prisma.car.findMany();
   }
 
-  async getById(carId: string) {
+  async getById(id: string) {
     return this.prisma.car.findUnique({
       where: {
-        carId,
+        id,
       },
     });
   }
 
-  async create(dto: CarDto) {
+  async create() {
     const car = {
-      model: dto.model,
-      city: dto.city,
-      track: dto.track,
-      otherCity: dto.otherCity,
+      model: '',
+      city: 0,
+      track: 0,
+      otherCity: 0,
     };
 
     return this.prisma.car.create({
@@ -31,12 +31,12 @@ export class CarService {
     });
   }
 
-  async update(dto: CarDto, carId: string) {
+  async update(dto: CarDto, id: string) {
     const data = dto;
 
     return this.prisma.car.update({
       where: {
-        carId,
+        id,
       },
       data,
       select: {
@@ -48,10 +48,10 @@ export class CarService {
     });
   }
 
-  async delete(carId: string) {
+  async delete(id: string) {
     return this.prisma.car.delete({
       where: {
-        carId,
+        id,
       },
     });
   }

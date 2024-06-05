@@ -1,8 +1,9 @@
-import Footer from "./ui/footer";
-import Header from "./header/header";
+'use client'
 
+import Footer from "./footer/footer"
+import Header from "./header/header"
 
-export default function UserLayout({ children }) {
+export default function Layout({ children }) {
     return (
         <main>
             <Header />

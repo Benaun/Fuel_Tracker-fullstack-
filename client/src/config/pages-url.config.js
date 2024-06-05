@@ -3,7 +3,9 @@ class BOARD {
 
     HOME = this.root
     PROFILE = `${this.root}/profile`
-    ADMIN_PROFILE = `${this.root}/admin/profile`
+    USERS = `${this.root}/users`
+    CARS = `${this.root}/cars`
+    MY_CAR = `${this.root}/my-car`
 }
 
 export const BOARD_PAGES = new BOARD()

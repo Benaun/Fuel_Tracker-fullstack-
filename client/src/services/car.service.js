@@ -5,8 +5,8 @@ export const carService = {
         const response = await axiosWithAuth.get('/cars')
         return response.data
     },
-    async createCar(data) {
-        const response = await axiosWithAuth.post('/cars', data)
+    async createCar() {
+        const response = await axiosWithAuth.post('/cars')
         return response.data
     },
 

@@ -1,6 +1,6 @@
 import { NO_INDEX_PAGE } from "@/constants/seo.constants";
-import UserLayout from "@/components/user-layout";
 import MyCar from "./my-car";
+import Layout from "@/components/layout/main-layout";
 
 export const metadata = {
     title: 'Мой авто',
@@ -9,8 +9,8 @@ export const metadata = {
 
 export default function MyCarPage() {
     return (
-        <UserLayout>
+        <Layout>
             <MyCar />
-        </UserLayout>
+        </Layout>
     )
 }

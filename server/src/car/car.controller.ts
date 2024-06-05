@@ -36,8 +36,8 @@ export class CarController {
   @HttpCode(200)
   @Post()
   @Auth()
-  async create(@Body() dto: CarDto) {
-    return this.carService.create(dto);
+  async create() {
+    return this.carService.create();
   }
 
   @HttpCode(200)
