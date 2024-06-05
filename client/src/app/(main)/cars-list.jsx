@@ -15,7 +15,7 @@ export default function CarsList() {
             <div className="flex flex-wrap justify-center my-20 gap-10">
                 {cars?.map((item) =>
                     <CarItem
-                        key={item.carId}
+                        key={item.id}
                         item={item}
                         handleClick={() => {
                             addCarToUser(item);

@@ -28,8 +28,8 @@ export class CarController {
   @HttpCode(200)
   @Put(':id')
   @Auth()
-  async update(@Body() dto: CarDto, @Param('id') id: string) {
-    return this.carService.update(dto, id);
+  async update(@Param('id') id: string, @Body() dto: CarDto) {
+    return this.carService.update(id, dto);
   }
 
   @UsePipes(new ValidationPipe())

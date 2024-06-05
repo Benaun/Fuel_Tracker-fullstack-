@@ -58,7 +58,7 @@ export default function UsersTable({ isHidden }) {
                         </TableRow>
                         : users.map((item) => (
                             <TableRow
-                                key={item.userId}
+                                key={item.id}
                                 className="text-center"
                             >
                                 <TableCell>{item.number}</TableCell>
@@ -71,7 +71,7 @@ export default function UsersTable({ isHidden }) {
                                         fill="orange"
                                         onClick={() =>{
                                             reset({
-                                                userId: item.userId,
+                                                id: item.id,
                                                 number: item.number,
                                                 name: item.name,
                                                 role: item.role,

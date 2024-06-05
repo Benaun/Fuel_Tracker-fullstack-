@@ -6,7 +6,7 @@ export function useUpdateCar() {
     const queryClient = useQueryClient()
     const { mutate: updateCar } = useMutation({
         mutationKey: ['update car'],
-        mutationFn: ({ carId, data }) => carService.updateCar(carId, data),
+        mutationFn: ({ id, data }) => carService.updateCar(id, data),
         onSuccess() {
             toast.success('Данные обновлены!')
             queryClient.invalidateQueries({

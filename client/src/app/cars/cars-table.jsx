@@ -9,18 +9,19 @@ import {
 } from "@/components/ui/table"
 import { Skeleton } from "@/components/ui/skeleton";
 import { useGetAllCars } from "@/hooks/useGetAllCars";
-import Link from "next/link";
 import { useDeleteCar } from "@/app/cars/hooks/useDeleteCar";
 import { FaCarBurst } from "react-icons/fa6";
 import { MdOutlineCarCrash } from "react-icons/md";
 import { FaCar } from "react-icons/fa";
 import { CiCirclePlus } from "react-icons/ci";
 import { useFormContext } from "react-hook-form";
+import { useCreateCar } from "./hooks/useCreatCar";
 
 export default function CarsTable({ isHidden }) {
     const { cars, isLoading } = useGetAllCars();
-    const { deleteCar } = useDeleteCar();
+    const { createCar } = useCreateCar()
     const { reset: editCar } = useFormContext();
+    const { deleteCar } = useDeleteCar();
 
     return (
         <div className="flex flex-wrap mx-auto w-full my-24 max-w-[430px] gap-4 justify-center">
@@ -28,9 +29,9 @@ export default function CarsTable({ isHidden }) {
                 <TableCaption>
                     <div className="flex justify-center gap-2">
                         Таблица автомобилей
-                        <Link
-                            href={"/cars/new-car"}
-                            className="flex items-center cursor-pointer"
+                        <div
+                            className="flex items-center"
+                            onClick={() => createCar()}
                         >
                             <FaCar
                                 fill="green"
@@ -40,7 +41,7 @@ export default function CarsTable({ isHidden }) {
                                 fill="green"
                                 size={15}
                             />
-                        </Link>
+                        </div>
                     </div>
                 </TableCaption>
                 <TableHeader>
@@ -63,7 +64,7 @@ export default function CarsTable({ isHidden }) {
                         </TableRow>
                         : cars?.map((car) => (
                             <TableRow
-                                key={car.carId}
+                                key={car.id}
                                 className="text-center"
                             >
                                 <TableCell>{car.model}</TableCell>
@@ -76,7 +77,7 @@ export default function CarsTable({ isHidden }) {
                                         size={20}
                                         onClick={() => {
                                             editCar({
-                                                carId: car.carId,
+                                                id: car.id,
                                                 model: car.model,
                                                 city: car.city,
                                                 track: car.track,
@@ -88,7 +89,7 @@ export default function CarsTable({ isHidden }) {
                                     <FaCarBurst
                                         size={20}
                                         fill="red"
-                                        onClick={() => deleteCar(car.carId)}
+                                        onClick={() => deleteCar(car.id)}
                                     />
                                 </TableCell>
                             </TableRow>

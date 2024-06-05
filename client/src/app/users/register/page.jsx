@@ -1,6 +1,6 @@
 import { NO_INDEX_PAGE } from "@/constants/seo.constants";
-import UserLayout from "@/components/user-layout";
 import AddUserForm from "./add-user-form";
+import Layout from "@/components/layout/main-layout";
 
 export const metadata = {
     title: 'Добавить пользователя',
@@ -9,8 +9,8 @@ export const metadata = {
 
 export default function AddUserPage() {
     return (
-        <UserLayout>
+        <Layout>
             <AddUserForm />
-        </UserLayout>
+        </Layout>
     )
 }

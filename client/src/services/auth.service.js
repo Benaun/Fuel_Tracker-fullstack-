@@ -12,7 +12,7 @@ export const authService = {
     },
 
     async register(data) {
-        const response = await axiosBasic.post(`/users/`, data)
+        const response = await axiosBasic.post(`/auth`, data)
         return response
     },
 

@@ -21,9 +21,9 @@ export class CarService {
   async create() {
     const car = {
       model: '',
-      city: 0,
-      track: 0,
-      otherCity: 0,
+      city: '',
+      track: '',
+      otherCity: '',
     };
 
     return this.prisma.car.create({
@@ -31,19 +31,16 @@ export class CarService {
     });
   }
 
-  async update(dto: CarDto, id: string) {
-    const data = dto;
-
+  async update(id: string, dto: CarDto) {
     return this.prisma.car.update({
       where: {
         id,
       },
-      data,
-      select: {
-        model: true,
-        city: true,
-        track: true,
-        otherCity: true,
+      data: {
+        model: dto.model,
+        city: dto.city,
+        track: dto.track,
+        otherCity: dto.otherCity,
       },
     });
   }

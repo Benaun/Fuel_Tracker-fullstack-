@@ -6,17 +6,17 @@ import { useUpdateCar } from "../hooks/useUpdateCar"
 
 export default function UpdateCarForm({ isHidden }) {
     const { register, reset, handleSubmit, watch } = useFormContext();
-    const existedId = watch('carId')
+    const existedId = watch('id')
     const { updateCar } = useUpdateCar(existedId)
 
     const onSubmit = (data) => {
-        const { carId, ...rest } = data
+        const { id, ...rest } = data
         const dto = { ...rest }
-        if (carId) {
-            updateCar({ carId, data: dto })
+        if (id) {
+            updateCar({ id, data: dto })
         }
         reset({
-            carId: undefined,
+            id: undefined,
             model: '',
             city: '',
             track: '',
@@ -33,25 +33,25 @@ export default function UpdateCarForm({ isHidden }) {
             >
                 <Heading title='Обновить' />
                 <Field
-                    type={'string'}
+                    type={'text'}
                     placeholder={'Модель'}
                     fieldName={'model'}
                     register={register}
                 />
                 <Field
-                    type={'string'}
+                    type={'text'}
                     placeholder={'Город'}
                     fieldName={'city'}
                     register={register}
                 />
                 <Field
-                    type={'string'}
+                    type={'text'}
                     placeholder={'Трасса'}
                     fieldName={'track'}
                     register={register}
                 />
                 <Field
-                    type={'string'}
+                    type={'text'}
                     placeholder={'Др.Город'}
                     fieldName={'otherCity'}
                     register={register}

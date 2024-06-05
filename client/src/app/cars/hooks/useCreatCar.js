@@ -8,7 +8,7 @@ export function useCreateCar() {
     const router = useRouter()
     const { mutate: createCar } = useMutation({
         mutationKey: ['create car'],
-        mutationFn: (data) => carService.createCar(data),
+        mutationFn: () => carService.createCar(),
         onSuccess() {
             toast.success('Авто создано!')
             queryClient.invalidateQueries({
