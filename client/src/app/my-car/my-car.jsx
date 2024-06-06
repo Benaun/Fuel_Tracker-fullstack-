@@ -14,7 +14,6 @@ export default function MyCar() {
     const { removeCarFromUser } = useRemoveCarFromUser();
     const isUserCar = data?.user.userCars[0];
     const router = useRouter();
-    console.log(data?.user)
 
     return <>
         <div className="flex flex-wrap mx-auto my-12 max-w-[430px] justify-center">
@@ -35,7 +34,7 @@ export default function MyCar() {
                             }}>
                         </FaWindowClose>
                     </CarItem>
-                    <DistanceFieldsList item={isUserCar} />
+                    <DistanceFieldsList/>
                 </div>
                 : <Link href={'/'}
                     className="mt-10">

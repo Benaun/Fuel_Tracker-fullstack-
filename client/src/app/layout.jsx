@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import { Providers } from "./providers";
 import { SITE_NAME } from "@/constants/seo.constants";
+import { StoreProvider } from "@/redux/provider";
 
 const main = Montserrat({
   weight: ['400', '500', '600', '700'],
@@ -23,8 +24,10 @@ export default function RootLayout({ children }) {
     <html lang="ru">
       <body className={main.className}>
         <Providers>
-          {children}
-          <Toaster position='center' />
+          <StoreProvider>
+            {children}
+            <Toaster position='center' />
+          </StoreProvider>
         </Providers>
       </body>
     </html>

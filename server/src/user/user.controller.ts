@@ -13,7 +13,7 @@ import { UserService } from './user.service';
 import { CurrentUser } from 'src/auth/decorators/user.decorator';
 import { UserDto } from './user.dto';
 import { Auth } from 'src/auth/decorators/auth.decorator';
-// import { CarDto } from 'src/car/car.dto';
+import { CarDto } from 'src/car/car.dto';
 
 @Controller('/users')
 export class UserController {
@@ -60,23 +60,20 @@ export class UserController {
   }
 
   // Выбрать авто и добавить пользователем
-  // @UsePipes(new ValidationPipe())
-  // @HttpCode(200)
-  // @Put()
-  // @Auth()
-  // async addCarToUser(
-  //   @CurrentUser('id') id: string,
-  //   @Body() dto: CarDto,
-  // ) {
-  //   return this.userService.addCarToUser(id, dto);
-  // }
+  @UsePipes(new ValidationPipe())
+  @HttpCode(200)
+  @Put()
+  @Auth()
+  async addCarToUser(@CurrentUser('id') id: string, @Body() dto: CarDto) {
+    return this.userService.addCarToUser(id, dto);
+  }
 
   // Удалить выбранное авто пользователем
-  // @UsePipes(new ValidationPipe())
-  // @HttpCode(200)
-  // @Put()
-  // @Auth()
-  // async removeCarFromUser(@CurrentUser('id') id: string) {
-  //   return this.userService.removeCarFromUser(id);
-  // }
+  @UsePipes(new ValidationPipe())
+  @HttpCode(200)
+  @Put()
+  @Auth()
+  async removeCarFromUser(@CurrentUser('id') id: string) {
+    return this.userService.removeCarFromUser(id);
+  }
 }

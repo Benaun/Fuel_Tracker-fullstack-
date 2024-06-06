@@ -1,5 +1,6 @@
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FaPlus, FaMinus } from "react-icons/fa6";
+import { FaPlus, FaMinus, FaRegTrashCan } from "react-icons/fa6";
 
 export default function DistanceFieldItem({
     title,
@@ -8,7 +9,8 @@ export default function DistanceFieldItem({
     value,
     changeText,
     handleActionAdd,
-    handleActionDel
+    handleActionDel,
+    handleActionClear
 }) {
     return (
         <div className="flex flex-wrap items-center gap-2">
@@ -24,7 +26,7 @@ export default function DistanceFieldItem({
                         placeholder="0"
                     />
                 </div>
-                <div className="flex w-full items-center justify-between">
+                <div className="flex w-full items-center gap-16">
                     <div className="flex gap-2">
                         <FaPlus
                             className="cursor-pointer"
@@ -38,13 +40,20 @@ export default function DistanceFieldItem({
                             size={15}
                             onClick={handleActionDel}
                         />
+                        <FaRegTrashCan
+                            onClick={handleActionClear}
+                            className="cursor-pointer"
+                            size={15}
+                        >
+                            Clear
+                        </FaRegTrashCan>
                     </div>
                     <span className="text-sm">Литры: {number ? number : 0} л.</span>
                 </div>
 
             </div>
             <div className="flex w-full">
-                <p className="text-[10px]">
+                <p className="text-[12px]">
                     Пробег:
                     <span> {kilometrs ? kilometrs : 0}</span>
                 </p>

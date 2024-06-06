@@ -86,27 +86,21 @@ export class UserService {
       data: {
         userCars: [dto],
       },
-      select: {
-        userCars: true,
-      },
     });
 
     return user;
   }
 
-  // async removeCarFromUser(id: string) {
-  //   const user = await this.getById(id);
-  //   await this.prisma.user.update({
-  //     where: {
-  //       id,
-  //     },
-  //     data: {
-  //       userCars: [],
-  //       cityDistance: [],
-  //       trackDistance: [],
-  //       otherCityDistance: [],
-  //     },
-  //   });
-  //   return user;
-  // }
+  async removeCarFromUser(id: string) {
+    const user = await this.getById(id);
+    await this.prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        userCars: null,
+      },
+    });
+    return user;
+  }
 }
