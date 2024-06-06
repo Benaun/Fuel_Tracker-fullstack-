@@ -24,7 +24,7 @@ export default function CarsTable({ isHidden }) {
     const { deleteCar } = useDeleteCar();
 
     return (
-        <div className="flex flex-wrap mx-auto w-full my-24 max-w-[430px] gap-4 justify-center">
+        <div className="flex my-24 w-full justify-center">
             <Table>
                 <TableCaption>
                     <div className="flex justify-center gap-2">
