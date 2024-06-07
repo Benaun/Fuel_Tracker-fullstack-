@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server"
-import { BOARD_PAGES } from "./config/pages-url.config"
 import { REFRESH_TOKEN } from "./services/auth-token.service"
 
 export async function middleware(request, response) {
@@ -9,7 +8,7 @@ export async function middleware(request, response) {
     const isAuthPage = url.includes('/auth')
 
     if(isAuthPage && refreshToken) {
-        return NextResponse.redirect(new URL(BOARD_PAGES.HOME, url))
+        return NextResponse.redirect(new URL('/', url))
     }
     if(isAuthPage) {
         return NextResponse.next()
@@ -22,5 +21,5 @@ export async function middleware(request, response) {
 }
 
 export const config = {
-    matcher: ['/', '/settings', '/auth/:path', '/cars', '/users']
+    matcher: ['/', '/profile', '/auth/:path', '/cars', '/users', '/my-car']
 }
