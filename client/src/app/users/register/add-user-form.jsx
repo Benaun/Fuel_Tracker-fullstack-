@@ -14,7 +14,7 @@ export default function AddUserForm() {
     const onSubmit = (data) => { createUser(data), reset() }
 
     return (
-        <div className="flex min-h-screen mt-24">
+        <div className="flex">
             <form
                 className="max-w-sm mx-auto"
                 onSubmit={handleSubmit(onSubmit)}

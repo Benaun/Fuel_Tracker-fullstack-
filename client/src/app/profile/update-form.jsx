@@ -18,7 +18,7 @@ export default function UpdateForm() {
             password: password || undefined
         })
     }
-    
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Heading title='Обновить профиль:' />

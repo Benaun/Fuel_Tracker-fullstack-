@@ -7,7 +7,6 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import { Skeleton } from "@/components/ui/skeleton";
 import { useGetAllCars } from "@/hooks/useGetAllCars";
 import { useDeleteCar } from "@/app/cars/hooks/useDeleteCar";
 import { FaCarBurst } from "react-icons/fa6";
@@ -16,53 +15,48 @@ import { FaCar } from "react-icons/fa";
 import { CiCirclePlus } from "react-icons/ci";
 import { useFormContext } from "react-hook-form";
 import { useCreateCar } from "./hooks/useCreatCar";
+import Loader from "@/components/ui/loader";
 
 export default function CarsTable({ isHidden }) {
-    const { cars, isLoading } = useGetAllCars();
+    const { cars, isPending } = useGetAllCars();
     const { createCar } = useCreateCar()
     const { reset: editCar } = useFormContext();
     const { deleteCar } = useDeleteCar();
 
     return (
-        <div className="flex my-24 w-full justify-center">
-            <Table>
-                <TableCaption>
-                    <div className="flex justify-center gap-2">
-                        Таблица автомобилей
-                        <div
-                            className="flex items-center"
-                            onClick={() => createCar()}
-                        >
-                            <FaCar
-                                fill="green"
-                                size={20}
-                            />
-                            <CiCirclePlus
-                                fill="green"
-                                size={15}
-                            />
+        <div className="flex w-full justify-center">
+            {isPending
+                ? <Loader />
+                : <Table>
+                    <TableCaption>
+                        <div className="flex justify-center gap-2">
+                            Таблица автомобилей
+                            <div
+                                className="flex items-center"
+                                onClick={() => createCar()}
+                            >
+                                <FaCar
+                                    fill="green"
+                                    size={20}
+                                />
+                                <CiCirclePlus
+                                    fill="green"
+                                    size={15}
+                                />
+                            </div>
                         </div>
-                    </div>
-                </TableCaption>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead>Модель</TableHead>
-                        <TableHead>Город</TableHead>
-                        <TableHead>Трасса</TableHead>
-                        <TableHead>Др.город</TableHead>
-                        <TableHead>Action</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {isLoading
-                        ? <TableRow>
-                            <TableCell><Skeleton className="h-4 w-[57px]" /></TableCell>
-                            <TableCell><Skeleton className="h-4 w-[42px]" /></TableCell>
-                            <TableCell><Skeleton className="h-4 w-[50px]" /></TableCell>
-                            <TableCell><Skeleton className="h-4 w-[67px]" /></TableCell>
-                            <TableCell><Skeleton className="h-4 w-[53px]" /></TableCell>
+                    </TableCaption>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead>Модель</TableHead>
+                            <TableHead>Город</TableHead>
+                            <TableHead>Трасса</TableHead>
+                            <TableHead>Др.город</TableHead>
+                            <TableHead>Action</TableHead>
                         </TableRow>
-                        : cars?.map((car) => (
+                    </TableHeader>
+                    <TableBody>
+                        {cars?.map((car) => (
                             <TableRow
                                 key={car.id}
                                 className="text-center"
@@ -94,9 +88,11 @@ export default function CarsTable({ isHidden }) {
                                 </TableCell>
                             </TableRow>
                         ))
-                    }
-                </TableBody>
-            </Table>
+                        }
+                    </TableBody>
+                </Table>
+            }
+
         </div>
     )
 }

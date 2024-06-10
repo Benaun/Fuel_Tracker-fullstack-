@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 export function useAuthUser() {
     const router = useRouter()
-    const {mutate: auth} = useMutation({
+    const {mutate: auth, isPending: authPeding} = useMutation({
         mutationKey: ['auth'],
         mutationFn: (data) => authService.main(data),
         onSuccess() {
@@ -17,5 +17,5 @@ export function useAuthUser() {
             toast.error('Некорректные данные!')
         }
     })
-    return { auth }
+    return { auth, authPeding}
 }

@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 export function useAddCarToUser() {
     const queryClient = useQueryClient();
-    const { mutate: addCarToUser } = useMutation({
+    const { mutate: addCarToUser, isPending: addCarPending } = useMutation({
         mutationKey: ['add car to user'],
         mutationFn: (data) => userService.addCarToUser(data),
         onSuccess() {
@@ -17,5 +17,5 @@ export function useAddCarToUser() {
             toast.error('Что-то пошло не так...')
         }
     })
-    return { addCarToUser }
+    return { addCarToUser, addCarPending }
 }

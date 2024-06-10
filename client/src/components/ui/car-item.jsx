@@ -1,7 +1,7 @@
 import Image from "next/image"
 import cn from 'clsx'
 
-export default function CarItem({ item, className, handleClick, children }) {
+export default function CarItem({ item, className, handleClick, children, isFull = false }) {
     return (
         <div
             className={cn("flex flex-col w-5/12 rounded-lg bg-gray-200 cursor-pointer", className)}
@@ -14,7 +14,7 @@ export default function CarItem({ item, className, handleClick, children }) {
                 alt="Image"
                 sizes="100vh"
                 priority
-                className="w-auto h-auto rounded-t-lg"
+                className={cn('w-auto  rounded-t-lg', isFull ? 'h-auto' : 'h-[130px]')}
             />
             <div className="flex flex-col items-center">
                 <div className="font-bold text-md">

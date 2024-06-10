@@ -26,7 +26,7 @@ export default function UpdateCarForm({ isHidden }) {
     }
 
     return (
-        <div className="flex min-h-screen mt-24 relative">
+        <div className="flex relative">
             <form
                 className="max-w-sm mx-auto"
                 onSubmit={handleSubmit(onSubmit)}
