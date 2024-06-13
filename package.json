@@ -1,0 +1,15 @@
+{
+    "name": "nestjs-nextjs",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "install": "cd server && npm install & cd ../client && npm install",
+      "build": "cd server && npm run build & cd ../client && npm run build",
+      "start:server": "cd server && npm run start:prod",
+      "start:client": "cd client && npm run start"
+    },
+    "keywords": [],
+    "author": "Benaun",
+    "license": "ISC"
+  }
