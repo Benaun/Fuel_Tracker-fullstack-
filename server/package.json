@@ -1,8 +1,8 @@
 {
-  "name": "project-name",
-  "version": "0.0.1",
+  "name": "fuel_tracker_server",
+  "version": "1.0",
   "description": "",
-  "author": "",
+  "author": "Benaun",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

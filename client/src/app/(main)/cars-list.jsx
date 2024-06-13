@@ -3,13 +3,11 @@
 import { useGetAllCars } from "@/hooks/useGetAllCars";
 import CarItem from "../../components/ui/car-item";
 import { useAddCarToUser } from "./useAddCarToUser";
-import { useRouter } from "next/navigation";
 import Loader from "@/components/ui/loader";
 
 export default function CarsList() {
     const { cars, isPending } = useGetAllCars();
     const { addCarToUser } = useAddCarToUser();
-    const router = useRouter()
 
     return (
         <section className="flex flex-col">
@@ -22,7 +20,6 @@ export default function CarsList() {
                             item={item}
                             handleClick={() => {
                                 addCarToUser(item);
-                                router.push('/my-car')
                             }}
                         />
                     ))
