@@ -18,7 +18,7 @@ model User {
 
   userCars Json[] @default([]) @map("user_cars")
 
-  role Role @default(USER)
+  role Role @default(ADMIN)
 
   @@map("user")
 }

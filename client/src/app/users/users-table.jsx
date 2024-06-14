@@ -77,7 +77,7 @@ export default function UsersTable({ isHidden }) {
                                     <FaUserSlash
                                         size={20}
                                         fill="red"
-                                        onClick={() => deleteUser(item.userId)}
+                                        onClick={() => deleteUser(item.id)}
                                     />
                                 </TableCell>
                             </TableRow>

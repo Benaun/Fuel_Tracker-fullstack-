@@ -1,5 +1,5 @@
 import { NO_INDEX_PAGE } from "@/constants/seo.constants";
-import Auth from "./auth";
+import AuthMainPage from ".";
 
 export const metadata = {
     title: 'Авторизация',
@@ -7,5 +7,5 @@ export const metadata = {
 }
 
 export default function AuthPage(){
-    return <Auth />
+    return <AuthMainPage />
 }

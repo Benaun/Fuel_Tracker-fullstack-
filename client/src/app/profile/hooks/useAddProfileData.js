@@ -2,13 +2,13 @@ import { useEffect } from "react"
 import { useProfile } from "./useProfile"
 
 export function useAddData(reset) {
-    const { data, isSuccess } = useProfile()
+    const { profile, isSuccess } = useProfile()
     useEffect(() => {
-        if (isSuccess && data) {
+        if (isSuccess && profile) {
             reset({
-                number: data.user.number,
-                name: data.user.name,
-                password: data.user.password
+                number: profile.user.number,
+                name: profile.user.name,
+                password: profile.user.password
             })
         }
     }, [isSuccess])
